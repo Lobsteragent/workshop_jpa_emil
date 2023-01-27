@@ -22,6 +22,8 @@ public class BookLoan {
     @JoinColumn(name = "book_id")
     private Book book;
 
+
+
     public BookLoan(int id, LocalDate loanDate, LocalDate dueDate, boolean returned, AppUser borrower, Book book) {
         this.id = id;
         this.loanDate = loanDate;

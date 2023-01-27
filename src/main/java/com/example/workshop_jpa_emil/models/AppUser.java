@@ -2,6 +2,7 @@ package com.example.workshop_jpa_emil.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,10 @@ public class AppUser {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "details_id")
     private Details details;
+    @OneToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<BookLoan> loans;
+
+
 
 
     public AppUser(int id, String username, LocalDate regdate) {
@@ -58,6 +63,17 @@ public class AppUser {
 
     public void setRegdate(LocalDate regdate) {
         this.regdate = regdate;
+    }
+
+
+    public void borrowBook(BookLoan bookLoan) {
+        loans.add(bookLoan);
+        bookLoan.setBorrower(this);
+    }
+    public void returnBook(BookLoan bookLoan){
+
+        bookLoan.setBorrower(null);
+        loans.remove(bookLoan);
     }
 
     @Override

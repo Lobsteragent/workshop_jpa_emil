@@ -2,6 +2,7 @@ package com.example.workshop_jpa_emil.models;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Book {
@@ -15,6 +16,7 @@ public class Book {
     private String title;
     @Column(nullable = false, length = 100)
     private int maxLoanDays;
+    private Set<Author> authors;
 
 
     public Book(int id, String isbn, String title, int maxLoanDays) {

@@ -28,6 +28,19 @@ public class Author {
         this.lastName = lastName;
     }
 
+    public void addBook (Book book){
+        if(!writtenBooks.contains(book)){
+            writtenBooks.add(book);
+        }
+    }
+    public void removeBook (Book book){
+        if(!writtenBooks.contains(book)){
+            writtenBooks.remove(book);
+        }
+    }
+
+
+
     public int getId() {
         return id;
     }
